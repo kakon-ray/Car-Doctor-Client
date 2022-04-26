@@ -32,12 +32,16 @@ const Header = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mx-auto">
-              <Nav.Link href="home#services">SERVICES</Nav.Link>
-
-              <Nav.Link href="home#experts">EXPERTS</Nav.Link>
-              <Nav.Link as={Link} to="about">
+              <Link to="home" className="nav-link">
+                SERVICES
+              </Link>
+              <Link to="experts" className="nav-link">
+                EXPERTS
+              </Link>
+              <Link to="about" className="nav-link">
                 ABOUT
-              </Nav.Link>
+              </Link>
+
               {user ? (
                 <>
                   <Link to="addservice" className="nav-link">
@@ -57,9 +61,9 @@ const Header = () => {
                   </button>
                 </>
               ) : (
-                <Nav.Link as={Link} to="login">
+                <Link to="login" className="nav-link">
                   LOGIN
-                </Nav.Link>
+                </Link>
               )}
               <NavDropdown
                 title={user?.displayName}
