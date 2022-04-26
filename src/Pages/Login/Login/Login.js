@@ -11,6 +11,7 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 import toast, { Toaster } from "react-hot-toast";
 import HelmetTitle from "../../Shared/HelmetTitle/HelmetTitle";
 import axios from "axios";
+import useToken from "../../../Hook/useToken";
 
 const notify = () => toast("Reset password Send Your Email");
 
@@ -30,13 +31,15 @@ const Login = () => {
   const [sendPasswordResetEmail, sending, errorResetPassword] =
     useSendPasswordResetEmail(auth);
 
+  const [token] = useToken(user);
   if (sending || loading) {
     <Loding />;
   }
 
-  if (user) {
+  if (token) {
     navigate(from, { replace: true });
   }
+
   const email = emailRef.current.value;
   const password = passwordRef.current.value;
 
@@ -44,14 +47,6 @@ const Login = () => {
     event.preventDefault();
     await signInWithEmailAndPassword(email, password);
     //  this is jwt token api
-    const { data } = await axios.post(
-      "https://gentle-wave-76810.herokuapp.com/login",
-      {
-        email,
-      }
-    );
-
-    localStorage.setItem("accessToken", data.accessToken);
   };
 
   const navigateRegister = (event) => {

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   useAuthState,
   useCreateUserWithEmailAndPassword,
@@ -14,6 +14,7 @@ import { sendEmailVerification } from "firebase/auth";
 import { async } from "@firebase/util";
 import Loding from "../../../Loding/Loding";
 import HelmetTitle from "../../Shared/HelmetTitle/HelmetTitle";
+import useToken from "../../../Hook/useToken";
 
 const Register = () => {
   const [checkBox, setCheckBox] = useState();
@@ -23,6 +24,8 @@ const Register = () => {
   const [updateProfile, updating, updateProfiel] = useUpdateProfile(auth);
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
+  const location = useLocation();
+  const [token] = useToken(user);
 
   const navigateLogin = () => {
     navigate("/login");
@@ -30,6 +33,11 @@ const Register = () => {
 
   if (Loding || updating) {
     <Loding />;
+  }
+
+  let from = location.state?.from?.pathname || "/";
+  if (token) {
+    navigate(from, { replace: true });
   }
 
   const handleRegister = async (event) => {

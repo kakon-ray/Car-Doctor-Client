@@ -3,11 +3,26 @@ import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import "./SocialLogin.css";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useSignInWithFacebook,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
+import useToken from "../../../Hook/useToken";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithFacebook, user1, loading1, error1] =
+    useSignInWithFacebook(auth);
+  const [token] = useToken(user);
+  const navigate = useNavigate();
+
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   let errorelement;
 
