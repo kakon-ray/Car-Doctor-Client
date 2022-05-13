@@ -4,7 +4,7 @@ import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
-import logo from "../../../images/logo.png";
+import userimg from "../../../images/user.png";
 import "./Header.css";
 
 const Header = () => {
@@ -53,12 +53,6 @@ const Header = () => {
                   <Link to="order" className="nav-link">
                     ORDER
                   </Link>
-                  <button
-                    className="btn btn-link text-white text-decoration-none"
-                    onClick={handleSignOut}
-                  >
-                    SIGN OUT
-                  </button>
                 </>
               ) : (
                 <Link to="login" className="nav-link">
@@ -70,25 +64,28 @@ const Header = () => {
                 id="collasible-nav-dropdown"
               >
                 <NavDropdown.Item href="#action/3.1">
-                  {user ? (
+                  <div className="w-50">
                     <img
                       style={{
                         width: "50px",
                         height: "50px",
                         borderRadius: "50px",
                       }}
-                      src={user.photoURL}
+                      src={user?.photoURL ? user?.photoURL : userimg}
                       alt=""
                     />
-                  ) : (
-                    ""
-                  )}
-                  <h5>{user?.displayName}</h5>
-                  <h5>{user?.email}</h5>
+                    <h5>{user?.displayName}</h5>
+                    <h5>{user?.email}</h5>
+                  </div>
                 </NavDropdown.Item>
 
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">ACCOUNT</NavDropdown.Item>
+                <button
+                  className="btn btn-link text-dark text-decoration-none"
+                  onClick={handleSignOut}
+                >
+                  SIGN OUT
+                </button>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
