@@ -13,7 +13,7 @@ const Checkout = () => {
     <div>
       {<h2>This is Check Out Page</h2>}
       <button
-        className="btn btn-primary"
+        className="btn btn-danger"
         onClick={() => {
           navigate(`/checkout/${services._id}`);
         }}

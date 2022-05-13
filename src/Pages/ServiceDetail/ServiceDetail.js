@@ -20,7 +20,7 @@ const ServiceDetail = () => {
       </div>
       <div className="text-center">
         <button
-          className="btn btn-primary"
+          className="btn btn-danger"
           onClick={() => {
             navigate(`/checkout/${services._id}`);
           }}
