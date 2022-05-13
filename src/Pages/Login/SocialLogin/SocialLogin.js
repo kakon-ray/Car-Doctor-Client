@@ -42,7 +42,7 @@ const SocialLogin = () => {
       <div className="icon-auth text-center">
         <button
           style={{ height: "45px", borderRadius: "20px" }}
-          className="btn btn-danger w-75 my-2"
+          className="btn border border-danger w-75 my-2"
           onClick={() => signInWithGoogle()}
         >
           <FaGoogle style={{ fontSize: "25px" }} />
@@ -50,14 +50,14 @@ const SocialLogin = () => {
         </button>
         <button
           style={{ height: "45px", borderRadius: "20px" }}
-          className="btn btn-danger w-75 my-2"
+          className="btn border border-danger w-75 my-2"
         >
           <FaFacebookF style={{ fontSize: "25px" }} />
           <span className="ms-1">Sign in Facebook</span>
         </button>
         <button
           style={{ height: "45px", borderRadius: "20px" }}
-          className="btn btn-danger w-75 my-2"
+          className="btn border border-danger w-75 my-2"
         >
           <FaGithub style={{ fontSize: "25px" }} />
           <span className="ms-1">Sign in Github</span>
